@@ -1,0 +1,10 @@
+{
+  "$schema": "https://petstore.swagger.io/v2/user",
+  "title": "Create Single User schema",
+  "type": "object",
+  "properties": {
+    "code": {"type": "number"},
+    "type": {"type": "string"},
+    "message": {"type": "string"}
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "host_config": {
+    "web_protocol": "https",
+    "web_host": "petstore.swagger.io",
+    "api_ver": "v2"
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "api_endpoints": {
+    "user": {
+      "create_single_user": "/user",
+      "create_multiple_users": "/user/createWithList",
+      "get_user_details": "/user/{}",
+      "update_user_details": "/user/{}",
+      "delete_user": "/user/{}"
+    }
+  },
+  "log_settings": {
+    "log_level": "debug",
+    "log_dir_name": "api-tests-logs",
+    "file_write_mode": false
+  }
+}
