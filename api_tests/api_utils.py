@@ -174,3 +174,10 @@ def create_user(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", email="jdoe
                                 headers=cl.headers, data=u_data, api_ver=cl.api_ver)
 
     return create_user_resp
+
+
+def incorrect_req_methods(req_method, uri):
+
+    resp_incorrect_method = request_operation(req_method=req_method, uri=uri, protocol=cl.web_protocol, host=cl.web_host,
+                                              data=None, api_ver=cl.api_ver, headers=cl.headers)
+    return resp_incorrect_method
