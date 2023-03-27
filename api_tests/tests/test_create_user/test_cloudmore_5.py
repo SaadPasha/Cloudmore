@@ -1,6 +1,6 @@
 import pytest
 
-from api_utils import incorrect_req_methods
+from api_utils import invalid_req_methods
 from base_script import ConfigLoader
 from logger import logging_setup
 
@@ -19,5 +19,5 @@ def test_incorrect_methods_and_invalid_headers(req_method, uri, expected) -> Non
     Returns: None
     """
     # Step - 1
-    assert incorrect_req_methods(req_method, uri).status_code == expected
+    assert invalid_req_methods(req_method, uri).status_code == expected
     logger.info(STEP_1.format(uri, req_method) + " ---------------------- done!")

@@ -1,0 +1,13 @@
+{
+  "title": "Get details of a User",
+  "type": "object",
+  "properties": {
+    "id": {"type": "number"},
+    "username": {"type": "string"},
+    "firstName": {"type": "string"},
+    "lastName": {"type": "string"},
+    "email": {"type": "string"},
+    "password": {"type": "string"},
+    "userStatus": {"type":  "number"}
+  }
+}

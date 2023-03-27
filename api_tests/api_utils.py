@@ -2,6 +2,7 @@ import json
 import os
 import random
 import string
+import collections
 
 import requests as re
 from jsonschema import validate
@@ -133,7 +134,7 @@ def assert_schema(resp_data, schema_file_name):
     return validate(resp_data, schema=valid_schema)
 
 
-def gen_rand_id(min_length, max_length) -> int:
+def gen_rand_int(min_length, max_length) -> int:
     """
     Generates a random ID to be used for creating a user
     Args:
@@ -157,8 +158,44 @@ def gen_rand_str(length) -> str:
     return rand_str
 
 
+def invalid_req_methods(req_method, uri):
+    """
+    Sends the API requests using incorrect methods
+    Args:
+        req_method:
+        uri:
+
+    Returns:
+
+    """
+    resp_invalid_methods = request_operation(req_method=req_method, uri=uri, protocol=cl.web_protocol, host=cl.web_host,
+                                             data=None, api_ver=cl.api_ver, headers=cl.headers)
+    return resp_invalid_methods
+
+
+# ----------------------------------------------- User Specific --------------------------------------------------#
+#                                                                                                                 #
+# ----------------------------------------------------------------------------------------------------------------#
+
+
 def create_user(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", email="jdoe@gmail.com",
                 p_wrd="abcd123", phone="123456789", u_status=0):
+    """
+    Creates a User using the endpoint: /user
+    Args:
+        u_id: ID of the User
+        u_name: Username
+        f_name: First Name
+        l_name: Last Name
+        email: Email Address
+        p_wrd: Password
+        phone: Phone Number
+        u_status: User Status i.e. 0 or any other number
+
+    Returns: REST Response Object
+    """
+    created_user = collections.namedtuple('created_user', ['u_data', 'resp'])
+
     u_data = {
         "id": u_id,
         "username": u_name,
@@ -173,11 +210,19 @@ def create_user(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", email="jdoe
     create_user_resp = post_req(uri=cl.create_single_user, protocol=cl.web_protocol, host=cl.web_host,
                                 headers=cl.headers, data=u_data, api_ver=cl.api_ver)
 
-    return create_user_resp
+    created_user = created_user(u_data, create_user_resp)
+    logger.debug("User created with the following details:\n{}".format(u_data))
+    return created_user
 
 
-def incorrect_req_methods(req_method, uri):
+def get_user_details(u_name):
+    """
+    Fetches the Details of a specific user
+    Args:
+        u_name: Username of the respective User
 
-    resp_incorrect_method = request_operation(req_method=req_method, uri=uri, protocol=cl.web_protocol, host=cl.web_host,
-                                              data=None, api_ver=cl.api_ver, headers=cl.headers)
-    return resp_incorrect_method
+    Returns: REST Response Object
+    """
+    user_details_resp = get_req(uri=cl.get_user_details.format(u_name), protocol=cl.web_protocol, host=cl.web_host,
+                                headers=cl.headers, api_ver=cl.api_ver)
+    return user_details_resp

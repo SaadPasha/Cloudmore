@@ -19,7 +19,7 @@ def test_create_user_duplicate_id() -> None:
     STEP_3 = "Repeat step - 1 with same id"
     STEP_4 = "Verify that the status code is 400 Bad request because of ID duplication."
 
-    rand_id = api_utils.gen_rand_id(10000000000, 99999999999)
+    rand_id = api_utils.gen_rand_int(10000000000, 99999999999)
 
     rand_id_resp = api_utils.create_user(u_id=rand_id)
     logger.info(STEP_1.format(rand_id) + " ------------done!")
