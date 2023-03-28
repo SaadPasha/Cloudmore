@@ -1,8 +1,8 @@
+import collections
 import json
 import os
 import random
 import string
-import collections
 
 import requests as re
 from jsonschema import validate
@@ -226,3 +226,40 @@ def get_user_details(u_name):
     user_details_resp = get_req(uri=cl.get_user_details.format(u_name), protocol=cl.web_protocol, host=cl.web_host,
                                 headers=cl.headers, api_ver=cl.api_ver)
     return user_details_resp
+
+
+def update_user_details(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", email="jdoe@gmail.com",
+                        p_wrd="abcd123", phone="123456789", u_status=0):
+    """
+    Creates a User using the endpoint: /user
+    Args:
+        u_id: ID of the User
+        u_name: Username
+        f_name: First Name
+        l_name: Last Name
+        email: Email Address
+        p_wrd: Password
+        phone: Phone Number
+        u_status: User Status i.e. 0 or any other number
+
+    Returns: REST Response Object
+    """
+    updated_user = collections.namedtuple('created_user', ['u_data', 'resp'])
+
+    u_data = {
+        "id": u_id,
+        "username": u_name,
+        "firstName": f_name,
+        "lastName": l_name,
+        "email": email,
+        "password": p_wrd,
+        "phone": phone,
+        "userStatus": u_status
+    }
+
+    update_user_resp = put_req(uri=cl.update_user_details.format(u_name), protocol=cl.web_protocol, host=cl.web_host,
+                               headers=cl.headers, data=u_data, api_ver=cl.api_ver)
+
+    updated_user = updated_user(u_data, update_user_resp)
+    logger.debug("User updated with the following details:\n{}".format(u_data))
+    return updated_user

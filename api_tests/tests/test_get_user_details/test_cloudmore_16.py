@@ -1,10 +1,7 @@
-from jsonschema import validate
 import api_utils
-from base_script import ConfigLoader
 from logger import logging_setup
 
 logger = logging_setup()
-cl = ConfigLoader()
 
 STEP_1 = "Create a user by sending an API req to the endpoint: /user"
 STEP_2 = "Verify that the req was successful"

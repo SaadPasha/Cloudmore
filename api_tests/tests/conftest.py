@@ -5,6 +5,9 @@ def pytest_html_report_title(report):
     report.title = "API tests"
 
 
+pytest_plugins = [
+    "tests.fixtures"
+]
 # def pytest_configure(config):
 #     ''' modifying the table pytest environment'''
 #
