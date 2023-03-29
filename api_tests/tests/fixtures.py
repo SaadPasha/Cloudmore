@@ -1,8 +1,12 @@
+import time
+
+import allure
 import pytest
 
 import api_utils
 
 
+@allure.step("Fixture to create a new user with randomly generated data")
 @pytest.fixture(scope="function")
 def create_user():
     create_user = api_utils.create_user(u_id=api_utils.gen_rand_int(10000000000, 99999999999),
@@ -15,14 +19,12 @@ def create_user():
                                         u_status=0)
     return create_user
 
-# @pytest.fixture(scope="module")
-# def gen_rand_id() -> int:
-#     """
-#     Generates a random ID to be used for creating a user
-#     Returns: ID
-#     """
-#     return random.randint(0, 99999999999)
-#
-#
-# @pytest.fixture(scope="module")
-# def gen_rand_str() ->
+
+@allure.step("Fixture to add a few seconds sleep time before execution of new test")
+@pytest.fixture(scope="function", autouse=True)
+def sleep_timer_test_exec():
+    """
+    Adds sleep time between each test case
+    Returns: None
+    """
+    time.sleep(3)

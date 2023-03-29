@@ -1,3 +1,21 @@
+#!/usr/bin/env python3
+"""
+# -*- coding: utf-8 -*-
+# ----------------------------------------------------------------------------
+__author__: "Saad Tahir"
+__date__: "22/3/2023"
+__updated__: ""
+__version__ = "1.0"
+__maintainer__ = "Saad Tahir"
+__email__ = "saad.tahir@ut.ee"
+__status__ = "Developed"
+# ----------------------------------------------------------------------------
+# The script adds the Config Loader class for developing the API test scripts. It adds
+# the support for following task(s):
+# - Loading the config file
+# - Initializing the config data
+# ----------------------------------------------------------------------------
+"""
 import json
 import os
 
@@ -19,7 +37,6 @@ class ConfigLoader:
 
         # Loading Headers
         self.headers = self.config_data.get('headers')
-        self.headers_type = self.headers.get("Content-Type")
 
         # Loading api_tests endpoints
         self.user = self.config_data.get('api_endpoints').get('user')
@@ -27,7 +44,7 @@ class ConfigLoader:
         self.create_multiple_users = self.user.get('create_multiple_users')
         self.get_user_details = self.user.get('get_user_details')
         self.update_user_details = self.user.get('update_user_details')
-        self.delete_user_details = self.user.get('delete_user_details')
+        self.delete_user_details = self.user.get('delete_user')
 
         # Custom Logger
         self.log_level = self.config_data.get('log_settings').get('log_level')

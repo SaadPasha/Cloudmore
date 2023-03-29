@@ -1,3 +1,21 @@
+#!/usr/bin/env python3
+"""
+# -*- coding: utf-8 -*-
+# ----------------------------------------------------------------------------
+__author__: "Saad Tahir"
+__date__: "22/3/2023"
+__updated__: ""
+__version__ = "1.0"
+__maintainer__ = "Saad Tahir"
+__email__ = "saad.tahir@ut.ee"
+__status__ = "Developed"
+# ----------------------------------------------------------------------------
+# The script adds the following util methods to be used for the tests:
+- Request Method(s)
+- Helpers (to load files etc.
+- Pet Store - User endpoint specific
+# ----------------------------------------------------------------------------
+"""
 import collections
 import json
 import os
@@ -70,7 +88,7 @@ def put_req(uri, protocol, host, headers, data, api_ver):
     return resp_put
 
 
-def del_req(uri, protocol, host, headers, data, api_ver):
+def del_req(uri, protocol, host, headers, api_ver):
     """
     Sends a DELETE request with the specified parameters
     Args:
@@ -79,12 +97,11 @@ def del_req(uri, protocol, host, headers, data, api_ver):
         host: host address
         api_ver: the current api ver
         headers: X-road headers
-        data: The request body to be sent
 
     Returns: a Rest object with all the properties to proceed for tests
     """
     resp_put = request_operation(req_method='DELETE', uri=uri, protocol=protocol, host=host,
-                                 api_ver=api_ver, data=data, headers=headers)
+                                 api_ver=api_ver, headers=headers)
     return resp_put
 
 
@@ -211,7 +228,8 @@ def create_user(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", email="jdoe
                                 headers=cl.headers, data=u_data, api_ver=cl.api_ver)
 
     created_user = created_user(u_data, create_user_resp)
-    logger.debug("User created with the following details:\n{}".format(u_data))
+    if create_user_resp.status_code == 200:
+        logger.debug("User created with the following details:\n{}".format(u_data))
     return created_user
 
 
@@ -244,7 +262,7 @@ def update_user_details(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", ema
 
     Returns: REST Response Object
     """
-    updated_user = collections.namedtuple('created_user', ['u_data', 'resp'])
+    updated_user = collections.namedtuple('updated_user', ['u_data', 'resp'])
 
     u_data = {
         "id": u_id,
@@ -261,5 +279,20 @@ def update_user_details(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", ema
                                headers=cl.headers, data=u_data, api_ver=cl.api_ver)
 
     updated_user = updated_user(u_data, update_user_resp)
-    logger.debug("User updated with the following details:\n{}".format(u_data))
+    if update_user_resp.status_code == 200:
+        logger.debug("User updated with the following details:\n{}".format(u_data))
     return updated_user
+
+
+def delete_user(u_name):
+    """
+    Deletes a user and its data
+    Args:
+        u_name: Username of the user
+
+    Returns: None
+    """
+    delete_user_resp = del_req(uri=cl.delete_user_details.format(u_name), protocol=cl.web_protocol, host=cl.web_host,
+                               headers=cl.headers, api_ver=cl.api_ver)
+
+    return delete_user_resp
