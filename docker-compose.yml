@@ -21,4 +21,7 @@ services:
       - "5252:5252"
 
   api-test:
-    build: .
+    image: "api-tests"
+    volumes:
+      - ${PWD}/allure-results:/api_tests/allure-results
+      - ${PWD}/allure-reports:/api_tests/default-reports
