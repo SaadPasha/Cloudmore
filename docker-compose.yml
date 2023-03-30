@@ -19,3 +19,6 @@ services:
       ALLURE_DOCKER_PUBLIC_API_URL_PREFIX: ""
     ports:
       - "5252:5252"
+
+  api-test:
+    build: .

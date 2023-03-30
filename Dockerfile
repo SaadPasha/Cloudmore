@@ -7,4 +7,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . .
 
-ENTRYPOINT ["python3", "-m", "pytest", "-v", "api_tests/tests/test_delete_user/test_valid_user.py"]
+ENTRYPOINT ["python3", "-m", "pytest", "-v", "api_tests/tests"]
