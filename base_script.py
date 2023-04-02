@@ -30,10 +30,10 @@ class ConfigLoader:
         self.config_data = self.load_json()
 
         # Loading Host config data
-        self.host_config_data = self.config_data.get('host_config')
-        self.web_protocol = self.host_config_data.get('web_protocol')
-        self.web_host = self.host_config_data.get('web_host')
-        self.api_ver = self.host_config_data.get('api_ver')
+        self.api_host_config_data = self.config_data.get('api_host_config')
+        self.api_web_protocol = self.api_host_config_data.get('api_web_protocol')
+        self.api_web_host = self.api_host_config_data.get('api_web_host')
+        self.api_ver = self.api_host_config_data.get('api_ver')
 
         # Loading Headers
         self.headers = self.config_data.get('headers')
@@ -57,7 +57,7 @@ class ConfigLoader:
         Loads the JSON config file
         Returns: The config file data as dict
         """
-        config_file_path = os.path.join(os.path.dirname(__file__), 'api_config.json')
+        config_file_path = os.path.join(os.path.dirname(__file__), 'config.json')
 
         with open(file=config_file_path, mode='r', encoding='utf-8') as file:
             config_data = json.load(file)

@@ -45,7 +45,7 @@ def test_update_user_details_missing_req_body(create_user):
 
     # Step - 2
     with allure.step(STEP_2):
-        update_user_no_json = api_utils.put_req(uri="/user/{}".format(username), protocol=cl.web_protocol, host=cl.web_host,
+        update_user_no_json = api_utils.put_req(uri="/user/{}".format(username), protocol=cl.api_web_protocol, host=cl.api_web_host,
                                                 api_ver=cl.api_ver, headers=cl.headers, data=None)
         logger.info(STEP_2 + " ----------------------- done!")
 

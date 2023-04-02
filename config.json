@@ -1,7 +1,7 @@
 {
-  "host_config": {
-    "web_protocol": "https",
-    "web_host": "petstore.swagger.io",
+  "api_host_config": {
+    "api_web_protocol": "https",
+    "api_web_host": "petstore.swagger.io",
     "api_ver": "v2"
   },
   "headers": {
@@ -19,6 +19,6 @@
   "log_settings": {
     "log_level": "debug",
     "log_dir_name": "api-tests-logs",
-    "file_write_mode": false
+    "file_write_mode": true
   }
 }

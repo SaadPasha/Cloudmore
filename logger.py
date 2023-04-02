@@ -18,10 +18,10 @@ import datetime
 import logging
 from base_script import ConfigLoader
 
-tb = ConfigLoader()
+cl = ConfigLoader()
 
 
-def logging_setup(log_level=tb.log_level, log_dir_name=tb.log_dir_name, file_mode=tb.file_write_mode):
+def logging_setup(log_level=cl.log_level, log_dir_name=cl.log_dir_name, file_mode=cl.file_write_mode):
     """
     The function sets up the logging feature with the customized handler and formatter
     for the logs.

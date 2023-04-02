@@ -57,7 +57,7 @@ def test_update_existing_username(create_user):
     # Step - 3
     with allure.step(STEP_3.format(username, username)):
         new_username = api_utils.gen_rand_str(5)
-        update_details = api_utils.put_req(uri="/user/{}".format(username), protocol=cl.web_protocol, host=cl.web_host,
+        update_details = api_utils.put_req(uri="/user/{}".format(username), protocol=cl.api_web_protocol, host=cl.api_web_host,
                                            api_ver=cl.api_ver, headers=cl.headers, data={"username": new_username})
 
         assert update_details.status_code == 200

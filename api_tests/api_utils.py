@@ -185,7 +185,7 @@ def invalid_req_methods(req_method, uri):
     Returns:
 
     """
-    resp_invalid_methods = request_operation(req_method=req_method, uri=uri, protocol=cl.web_protocol, host=cl.web_host,
+    resp_invalid_methods = request_operation(req_method=req_method, uri=uri, protocol=cl.api_web_protocol, host=cl.api_web_host,
                                              data=None, api_ver=cl.api_ver, headers=cl.headers)
     return resp_invalid_methods
 
@@ -224,7 +224,7 @@ def create_user(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", email="jdoe
         "userStatus": u_status
     }
 
-    create_user_resp = post_req(uri=cl.create_single_user, protocol=cl.web_protocol, host=cl.web_host,
+    create_user_resp = post_req(uri=cl.create_single_user, protocol=cl.api_web_protocol, host=cl.api_web_host,
                                 headers=cl.headers, data=u_data, api_ver=cl.api_ver)
 
     created_user = created_user(u_data, create_user_resp)
@@ -241,7 +241,7 @@ def get_user_details(u_name):
 
     Returns: REST Response Object
     """
-    user_details_resp = get_req(uri=cl.get_user_details.format(u_name), protocol=cl.web_protocol, host=cl.web_host,
+    user_details_resp = get_req(uri=cl.get_user_details.format(u_name), protocol=cl.api_web_protocol, host=cl.api_web_host,
                                 headers=cl.headers, api_ver=cl.api_ver)
     return user_details_resp
 
@@ -275,7 +275,7 @@ def update_user_details(u_id=0, u_name="jdoe1", f_name="Jane", l_name="Doe", ema
         "userStatus": u_status
     }
 
-    update_user_resp = put_req(uri=cl.update_user_details.format(u_name), protocol=cl.web_protocol, host=cl.web_host,
+    update_user_resp = put_req(uri=cl.update_user_details.format(u_name), protocol=cl.api_web_protocol, host=cl.api_web_host,
                                headers=cl.headers, data=u_data, api_ver=cl.api_ver)
 
     updated_user = updated_user(u_data, update_user_resp)
@@ -292,7 +292,7 @@ def delete_user(u_name):
 
     Returns: None
     """
-    delete_user_resp = del_req(uri=cl.delete_user_details.format(u_name), protocol=cl.web_protocol, host=cl.web_host,
+    delete_user_resp = del_req(uri=cl.delete_user_details.format(u_name), protocol=cl.api_web_protocol, host=cl.api_web_host,
                                headers=cl.headers, api_ver=cl.api_ver)
 
     return delete_user_resp

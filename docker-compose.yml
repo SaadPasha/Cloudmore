@@ -21,7 +21,10 @@ services:
       - "5252:5252"
 
   api-test:
-    image: "api-tests"
+    image: api-tests
+    container_name: ct-1
+    build: .
     volumes:
       - ${PWD}/allure-results:/api_tests/allure-results
       - ${PWD}/allure-reports:/api_tests/default-reports
+      - ${PWD}/api_tests_logs:/api_tests/api-tests-logs

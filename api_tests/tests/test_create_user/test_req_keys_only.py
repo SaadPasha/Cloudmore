@@ -43,7 +43,7 @@ def test_create_new_user_only_req_keys():
         "username": "saad",
     }
     with allure.step(STEP_1.format(user_data_req_keys)):
-        resp_req_keys_only = api_utils.post_req(uri=cl.create_single_user, protocol=cl.web_protocol, host=cl.web_host,
+        resp_req_keys_only = api_utils.post_req(uri=cl.create_single_user, protocol=cl.api_web_protocol, host=cl.api_web_host,
                                                 headers=cl.headers, data=user_data_req_keys, api_ver=cl.api_ver)
 
         resp_req_keys_only_json = resp_req_keys_only.json()
