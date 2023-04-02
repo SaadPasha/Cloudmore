@@ -46,6 +46,15 @@ class ConfigLoader:
         self.update_user_details = self.user.get('update_user_details')
         self.delete_user_details = self.user.get('delete_user')
 
+        # Loading page URLs
+        self.urls = self.config_data.get('urls')
+        self.homepage_url = self.urls.get('home_page')
+        self.platform_url = self.urls.get('platform_page')
+        self.blog_url = self.urls.get('blog_page')
+        self.case_studies_url = self.urls.get('case_studies_page')
+        self.about_url = self.urls.get('about_page')
+        self.contact_url = self.urls.get('contact_page')
+
         # Custom Logger
         self.log_level = self.config_data.get('log_settings').get('log_level')
         self.log_dir_name = self.config_data.get('log_settings').get('log_dir_name')

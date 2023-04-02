@@ -16,6 +16,14 @@
       "delete_user": "/user/{}"
     }
   },
+  "urls": {
+    "home_page": "https://cloudmore.com",
+    "platform_page": "https://cloudmore.com/product/",
+    "blog_page": "https://cloudmore.com/content-hub",
+    "case_studies_page": "https://cloudmore.com/content-hub",
+    "about_page": "https://cloudmore.com/about-us/",
+    "contact_page": "https://cloudmore.com/contact-us/"
+  },
   "log_settings": {
     "log_level": "debug",
     "log_dir_name": "api-tests-logs",
