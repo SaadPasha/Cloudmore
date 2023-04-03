@@ -20,11 +20,25 @@ services:
     ports:
       - "5252:5252"
 
-  api-test:
+  api-tests:
     image: api-tests
-    container_name: ct-1
-    build: .
+    container_name: api-tests-1
+    build:
+      context: .
+      dockerfile: api_tests/Dockerfile
     volumes:
       - ${PWD}/allure-results:/api_tests/allure-results
       - ${PWD}/allure-reports:/api_tests/default-reports
-      - ${PWD}/api_tests_logs:/api_tests/api-tests-logs
+      - ${PWD}/logs:/api_tests/logs
+
+  ui-tests:
+    image: ui-tests
+    container_name: ui-tests-1
+    build:
+      context: .
+      dockerfile: ui_tests/Dockerfile
+    volumes:
+      - ${PWD}/allure-results:/ui_tests/allure-results
+      - ${PWD}/allure-reports:/ui_tests/default-reports
+      - ${PWD}/logs:/ui_tests/logs
+      - ${PWD}/ui_tests/screenshots:/ui_tests/screenshots

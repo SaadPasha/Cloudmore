@@ -74,7 +74,7 @@ def _file_handler(logger, log_level, formatter, log_dir_name):
     """
     log_file_path = ""
     log_dir_path = os.path.join(os.path.dirname(__file__), log_dir_name)
-    loge_file_name = datetime.datetime.utcnow().strftime("%Y-%m-%d-%H")
+    loge_file_name = datetime.datetime.utcnow().strftime("%Y-%m-%d")
 
     if not os.path.exists(log_dir_path):
         os.makedirs(log_dir_path)

@@ -26,7 +26,7 @@
   },
   "log_settings": {
     "log_level": "debug",
-    "log_dir_name": "api-tests-logs",
+    "log_dir_name": "logs",
     "file_write_mode": true
   }
 }
